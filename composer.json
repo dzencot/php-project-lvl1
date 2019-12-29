@@ -1,5 +1,8 @@
 {
     "name": "dzencot/brain-games",
+    "bin": [
+      "bin/brain-games"
+    ],
     "authors": [
         {
             "name": "Ivan Gagarinov",
