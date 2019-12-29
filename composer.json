@@ -1,0 +1,10 @@
+{
+    "name": "dzencot/brain-games",
+    "authors": [
+        {
+            "name": "Ivan Gagarinov",
+            "email": "dzencot@gmail.com"
+        }
+    ],
+    "require": {}
+}
