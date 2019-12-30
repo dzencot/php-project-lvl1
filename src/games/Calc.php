@@ -1,0 +1,55 @@
+<?php
+
+namespace BrainGames\Games\Calc;
+
+function getRule(): string
+{
+    return 'Answer "yes" if the number is even, otherwise answer "no".';
+}
+
+function getAnswer(): callable
+{
+    $getAnswer = function ($question) {
+        ['operator' => $operator, 'number1' => $number1, 'number2' => $number2] = $question;
+        switch ($operator) {
+            case '+':
+                return strval($number1 + $number2);
+            case '-':
+                return strval($number1 - $number2);
+            default:
+                return strval($number1 * $number2);
+        }
+    };
+    return $getAnswer;
+}
+
+function getQuestion(): callable
+{
+    $getOperator = function () {
+        switch (rand(1, 3)) {
+            case 1:
+                return '+';
+            case 2:
+                return '-';
+            default:
+                return '*';
+        }
+    };
+    $getQuestion = function () use ($getOperator) {
+        return [
+            'operator' => $getOperator(),
+            'number1' => rand(1, 100),
+            'number2' => rand(1, 100),
+        ];
+    };
+    return $getQuestion;
+}
+
+function getQuestionView(): callable
+{
+    $getQuestionView = function ($question) {
+        ['operator' => $operator, 'number1' => $number1, 'number2' => $number2] = $question;
+        return "${number1} ${operator} ${number2}";
+    };
+    return $getQuestionView;
+}

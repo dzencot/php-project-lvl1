@@ -2,7 +2,8 @@
     "name": "dzencot/brain-games",
     "bin": [
       "bin/brain-games",
-      "bin/brain-even"
+      "bin/brain-even",
+      "bin/brain-calc"
     ],
     "type": "library",
     "description": "hexlet php-package",
@@ -13,7 +14,8 @@
     "autoload": {
       "files": [
         "src/Cli.php",
-        "src/games/IsOdd.php"
+        "src/games/IsOdd.php",
+        "src/games/Calc.php"
       ]
     },
     "authors": [
