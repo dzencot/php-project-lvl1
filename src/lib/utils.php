@@ -16,4 +16,4 @@ function calc($operator, $number1, $number2)
         default:
             return 'unknown operator';
     };
-};
+}
