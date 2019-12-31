@@ -6,7 +6,7 @@ use function BrainGames\Utils\calc;
 
 function getRule(): string
 {
-    return 'Answer "yes" if the number is even, otherwise answer "no".';
+    return 'What is the result of the expression?';
 }
 
 function getAnswer(): callable

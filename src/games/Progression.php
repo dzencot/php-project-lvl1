@@ -6,7 +6,7 @@ use function BrainGames\Utils\calc;
 
 function getRule(): string
 {
-    return 'Find the greatest common divisor of given numbers.';
+    return 'What number is missing in the progression?';
 }
 
 function getAnswer(): callable

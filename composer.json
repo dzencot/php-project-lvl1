@@ -5,7 +5,8 @@
       "bin/brain-even",
       "bin/brain-calc",
       "bin/brain-gcd",
-      "bin/brain-progression"
+      "bin/brain-progression",
+      "bin/brain-prime"
     ],
     "type": "library",
     "description": "hexlet php-package",
@@ -20,6 +21,7 @@
         "src/games/Calc.php",
         "src/games/GCD.php",
         "src/games/Progression.php",
+        "src/games/IsPrime.php",
         "src/lib/utils.php"
       ]
     },
