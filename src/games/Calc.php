@@ -2,6 +2,8 @@
 
 namespace BrainGames\Games\Calc;
 
+use function BrainGames\Utils\calc;
+
 function getRule(): string
 {
     return 'Answer "yes" if the number is even, otherwise answer "no".';
@@ -11,14 +13,7 @@ function getAnswer(): callable
 {
     $getAnswer = function ($question) {
         ['operator' => $operator, 'number1' => $number1, 'number2' => $number2] = $question;
-        switch ($operator) {
-            case '+':
-                return strval($number1 + $number2);
-            case '-':
-                return strval($number1 - $number2);
-            default:
-                return strval($number1 * $number2);
-        }
+        return strval(calc($operator, $number1, $number2));
     };
     return $getAnswer;
 }

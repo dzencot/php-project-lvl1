@@ -12,6 +12,7 @@ function run(string $ruleGame, callable $getCorrectAnswer, callable $getQuestion
     line('Hello, %s!', $playerName);
     line($ruleGame);
     $maxCorrectAnswers = 3;
+    $fail = false;
     for ($i = 1; $i <= $maxCorrectAnswers; $i += 1) {
         $question = $getQuestion();
         $correctAnswer = $getCorrectAnswer($question);
@@ -23,9 +24,12 @@ function run(string $ruleGame, callable $getCorrectAnswer, callable $getQuestion
         if ($answer !== $correctAnswer) {
             line('\'%s\' is wrong answer ;(. Correct answer was \'%s\'.' . PHP_EOL, $answer, $correctAnswer);
             line('Let\'s try again, %s!' . PHP_EOL, $playerName);
+            $fail = true;
             break;
         }
         line('Correct!');
     }
-    line('Congratulations, %s!', $playerName);
+    if (!$fail) {
+        line('Congratulations, %s!', $playerName);
+    }
 }
