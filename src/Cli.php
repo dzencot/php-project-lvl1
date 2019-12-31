@@ -27,4 +27,5 @@ function run(string $ruleGame, callable $getCorrectAnswer, callable $getQuestion
         }
         line('Correct!');
     }
+    line('Congratulations, %s!', $playerName);
 }

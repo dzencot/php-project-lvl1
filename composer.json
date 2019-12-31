@@ -3,7 +3,8 @@
     "bin": [
       "bin/brain-games",
       "bin/brain-even",
-      "bin/brain-calc"
+      "bin/brain-calc",
+      "bin/brain-gcd"
     ],
     "type": "library",
     "description": "hexlet php-package",
@@ -15,7 +16,8 @@
       "files": [
         "src/Cli.php",
         "src/games/IsOdd.php",
-        "src/games/Calc.php"
+        "src/games/Calc.php",
+        "src/games/GCD.php"
       ]
     },
     "authors": [
