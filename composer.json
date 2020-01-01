@@ -8,7 +8,7 @@
       "bin/brain-progression",
       "bin/brain-prime"
     ],
-    "type": "library",
+    "type": "project",
     "description": "hexlet php-package",
     "license": "MIT",
     "scripts": {
@@ -32,6 +32,7 @@
         }
     ],
     "require": {
+        "php": "^7.2",
         "wp-cli/php-cli-tools": "^0.11.11"
     },
     "require-dev": {
