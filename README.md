@@ -21,6 +21,7 @@
 ## Installing
 
 `composer global require dzencot/brain-games`
+
 Add `$HOME/.config/composer/vendor/bin` to `PATH`
 
 ## Usage
