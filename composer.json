@@ -9,7 +9,8 @@
       "bin/brain-prime"
     ],
     "type": "project",
-    "description": "hexlet php-package",
+    "keywords": ["hexlet", "brain-games"],
+    "description": "Brain Games is bundle of mini-games with command-line interface",
     "license": "MIT",
     "scripts": {
       "phpcs": "phpcs"
