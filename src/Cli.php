@@ -8,7 +8,7 @@ use function cli\prompt;
 function run(string $ruleGame, callable $getCorrectAnswer, callable $getQuestion, callable $getViewQuestion): void
 {
     line('Welcome to the Brain Game!');
-    if (!$ruleGame || !$getCorrectAnswer || !$getQuestion || $getViewQuestion) {
+    if (!$ruleGame || !$getCorrectAnswer || !$getQuestion || !$getViewQuestion) {
         return;
     }
     $playerName = prompt('May I have your name?');
