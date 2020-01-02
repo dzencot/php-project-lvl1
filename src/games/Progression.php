@@ -11,7 +11,7 @@ function getRule(): string
 
 function getAnswer(): callable
 {
-    $getAnswer = function ($question) {
+    $getAnswer = function (array $question): string {
         [
             'hideNumber' => $hideNumber,
             'operator' => $operator,
@@ -19,7 +19,7 @@ function getAnswer(): callable
             'iter' => $iterNum,
         ] = $question;
 
-        $iter = function ($currentCount, $acc) use (&$iter, $hideNumber, $operator, $iterNum) {
+        $iter = function (int $currentCount, int $acc) use (&$iter, $hideNumber, $operator, $iterNum): int {
             if ($currentCount >= $hideNumber) {
                 return $acc;
             }
@@ -34,7 +34,7 @@ function getAnswer(): callable
 
 function getQuestion(): callable
 {
-    $getQuestion = function () {
+    $getQuestion = function (): array {
         return [
             'hideNumber' => rand(1, 10),
             'operator' => rand(1, 2) === 1 ? '+' : '-',
@@ -48,7 +48,7 @@ function getQuestion(): callable
 
 function getQuestionView(): callable
 {
-    $getQuestionView = function ($question) {
+    $getQuestionView = function (array $question): string {
         [
             'hideNumber' => $hideNumber,
             'operator' => $operator,
@@ -56,7 +56,7 @@ function getQuestionView(): callable
             'iter' => $iterNum,
         ] = $question;
 
-        $iter = function ($currentCount, $acc) use (&$iter, $operator, $iterNum) {
+        $iter = function (int $currentCount, array $acc) use (&$iter, $operator, $iterNum): array {
             if ($currentCount >= 10) {
                 return $acc;
             }

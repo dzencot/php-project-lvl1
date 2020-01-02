@@ -9,7 +9,7 @@ function getRule(): string
 
 function getAnswer(): callable
 {
-    $getAnswer = function ($question) {
+    $getAnswer = function (array $question): string {
         ['number1' => $number1, 'number2' => $number2] = $question;
         $iter = function ($a, $b) use (&$iter) {
             if ($a !== 0 && $b !== 0) {
@@ -27,7 +27,7 @@ function getAnswer(): callable
 
 function getQuestion(): callable
 {
-    $getQuestion = function () {
+    $getQuestion = function (): array {
         return [
             'number1' => rand(1, 100),
             'number2' => rand(1, 100),
@@ -38,7 +38,7 @@ function getQuestion(): callable
 
 function getQuestionView(): callable
 {
-    $getQuestionView = function ($question) {
+    $getQuestionView = function (array $question): string {
         ['number1' => $number1, 'number2' => $number2] = $question;
         return "${number1} ${number2}";
     };

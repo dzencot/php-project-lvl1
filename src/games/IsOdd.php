@@ -9,7 +9,7 @@ function getRule(): string
 
 function getAnswer(): callable
 {
-    $getAnswer = function ($question) {
+    $getAnswer = function (int $question): string {
         return $question % 2 === 0 ? 'yes' : 'no';
     };
     return $getAnswer;
@@ -17,7 +17,7 @@ function getAnswer(): callable
 
 function getQuestion(): callable
 {
-    $getQuestion = function () {
+    $getQuestion = function (): int {
         return rand(1, 100);
     };
     return $getQuestion;
@@ -25,8 +25,8 @@ function getQuestion(): callable
 
 function getQuestionView(): callable
 {
-    $getQuestionView = function ($question) {
-        return $question;
+    $getQuestionView = function (int $question): string {
+        return strval($question);
     };
     return $getQuestionView;
 }

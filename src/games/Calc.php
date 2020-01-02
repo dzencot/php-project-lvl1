@@ -11,7 +11,7 @@ function getRule(): string
 
 function getAnswer(): callable
 {
-    $getAnswer = function ($question) {
+    $getAnswer = function (array $question): string {
         ['operator' => $operator, 'number1' => $number1, 'number2' => $number2] = $question;
         return strval(calc($operator, $number1, $number2));
     };
@@ -30,7 +30,7 @@ function getQuestion(): callable
                 return '*';
         }
     };
-    $getQuestion = function () use ($getOperator) {
+    $getQuestion = function () use ($getOperator): array {
         return [
             'operator' => $getOperator(),
             'number1' => rand(1, 100),
@@ -42,7 +42,7 @@ function getQuestion(): callable
 
 function getQuestionView(): callable
 {
-    $getQuestionView = function ($question) {
+    $getQuestionView = function (array $question): string {
         ['operator' => $operator, 'number1' => $number1, 'number2' => $number2] = $question;
         return "${number1} ${operator} ${number2}";
     };

@@ -9,8 +9,8 @@ function getRule(): string
 
 function getAnswer(): callable
 {
-    $getAnswer = function ($question) {
-        $isPrime = function (int $n, int $i) use (&$isPrime) {
+    $getAnswer = function (int $question): string {
+        $isPrime = function (int $n, int $i) use (&$isPrime): bool {
             if ($n < 2) {
                 return false;
             } elseif ($n == 2) {
@@ -30,7 +30,7 @@ function getAnswer(): callable
 
 function getQuestion(): callable
 {
-    $getQuestion = function () {
+    $getQuestion = function (): int {
         return rand(1, 100);
     };
     return $getQuestion;
@@ -38,8 +38,8 @@ function getQuestion(): callable
 
 function getQuestionView(): callable
 {
-    $getQuestionView = function ($question) {
-        return $question;
+    $getQuestionView = function (int $question): string {
+        return strval($question);
     };
     return $getQuestionView;
 }
