@@ -17,7 +17,7 @@
     "autoload": {
       "files": [
         "src/Cli.php",
-        "src/games/IsOdd.php",
+        "src/games/IsEven.php",
         "src/games/Calc.php",
         "src/games/GCD.php",
         "src/games/Progression.php",

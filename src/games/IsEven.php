@@ -1,6 +1,6 @@
 <?php
 
-namespace BrainGames\Games\IsOdd;
+namespace BrainGames\Games\IsEven;
 
 use function BrainGames\Cli\run;
 
@@ -10,7 +10,7 @@ function game()
 {
     $game = function () {
         $question = rand(1, 100);
-        $answer = $question % 2 ? 'yes' : 'no';
+        $answer = $question % 2 === 0 ? 'yes' : 'no';
         $viewQuestion = strval($question);
         return [
             'answer' => $answer,
