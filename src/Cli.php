@@ -5,21 +5,16 @@ namespace BrainGames\Cli;
 use function cli\line;
 use function cli\prompt;
 
-function run(string $ruleGame, callable $getCorrectAnswer, callable $getQuestion, callable $getViewQuestion): void
+function run(string $ruleGame, callable $game): void
 {
     line('Welcome to the Brain Game!');
-    if (!$ruleGame || !$getCorrectAnswer || !$getQuestion || !$getViewQuestion) {
-        return;
-    }
     $playerName = prompt('May I have your name?');
     line('Hello, %s!', $playerName);
     line($ruleGame);
     $maxCorrectAnswers = 3;
     $fail = false;
     for ($i = 1; $i <= $maxCorrectAnswers; $i += 1) {
-        $question = $getQuestion();
-        $correctAnswer = $getCorrectAnswer($question);
-        $viewQuestion = $getViewQuestion($question);
+        ['answer' => $correctAnswer, 'viewQuestion' => $viewQuestion] = $game();
 
         line('Question: %s', $viewQuestion);
         $answer = prompt('Your answer');

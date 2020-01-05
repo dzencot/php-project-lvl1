@@ -1,7 +1,6 @@
 {
     "name": "dzencot/brain-games",
     "bin": [
-      "bin/brain-games",
       "bin/brain-even",
       "bin/brain-calc",
       "bin/brain-gcd",
@@ -22,8 +21,7 @@
         "src/games/Calc.php",
         "src/games/GCD.php",
         "src/games/Progression.php",
-        "src/games/IsPrime.php",
-        "src/lib/utils.php"
+        "src/games/IsPrime.php"
       ]
     },
     "authors": [

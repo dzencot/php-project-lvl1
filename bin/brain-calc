@@ -10,7 +10,6 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-use BrainGames\Games\Calc as game;
-use function BrainGames\Cli\run;
+use function BrainGames\Games\Calc\game;
 
-run(game\getRule(), game\getAnswer(), game\getQuestion(), game\getQuestionView());
+game();

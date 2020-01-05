@@ -2,73 +2,77 @@
 
 namespace BrainGames\Games\Progression;
 
-use function BrainGames\Utils\calc;
+use function BrainGames\Cli\run;
 
-function getRule(): string
+const GAME_RULE = 'What number is missing in the progression?';
+const MAX_LENGTH_NUMBERS = 10;
+
+function getQuestion(): array
 {
-    return 'What number is missing in the progression?';
+    return [
+        'hideNumber' => rand(1, 10),
+        'operator' => rand(1, 2) === 1 ? '+' : '-',
+        'startNum' => rand(1, 100),
+        'iter' => rand(1, 10),
+    ];
 }
 
-function getAnswer(): callable
+function calc($operator, $number1, $number2)
 {
-    $getAnswer = function (array $question): string {
-        [
-            'hideNumber' => $hideNumber,
-            'operator' => $operator,
-            'startNum' => $startNum,
-            'iter' => $iterNum,
-        ] = $question;
+    switch ($operator) {
+        case '+':
+            return $number1 + $number2;
+        case '-':
+            return $number1 - $number2;
+        case '*':
+            return $number1 * $number2;
+        case '/':
+            return $number1 / $number2;
+        default:
+            return 'unknown operator';
+    };
+}
 
-        $iter = function (int $currentCount, int $acc) use (&$iter, $hideNumber, $operator, $iterNum): int {
-            if ($currentCount >= $hideNumber) {
-                return $acc;
-            }
-            return $iter($currentCount + 1, calc($operator, $acc, $iterNum));
-        };
+function getNumbers(array $question): array
+{
+    [
+        'hideNumber' => $hideNumber,
+        'operator' => $operator,
+        'startNum' => $startNum,
+        'iter' => $iterNum,
+    ] = $question;
 
-        return strval($iter(0, $startNum));
+    $iter = function (int $currentCount, array $acc) use (&$iter, $operator, $iterNum): array {
+        if ($currentCount >= MAX_LENGTH_NUMBERS) {
+            return $acc;
+        }
+        $previousNum = $acc[count($acc) - 1];
+        array_push($acc, calc($operator, $previousNum, $iterNum));
+        return $iter($currentCount + 1, $acc);
     };
 
-    return $getAnswer;
+    $result = $iter(0, [$startNum]);
+    return $result;
 }
 
-function getQuestion(): callable
+function game()
 {
-    $getQuestion = function (): array {
+    $game = function () {
+        $question = getQuestion();
+        $hideNumberIndex = $question['hideNumber'];
+        $numbers = getNumbers($question);
+        $answer = $numbers[$hideNumberIndex];
+        $questionNumbers = array_map(function ($item) use ($answer) {
+            if ($item === $answer) {
+                return '..';
+            }
+            return $item;
+        }, $numbers);
+        $viewQuestion = implode(' ', $questionNumbers);
         return [
-            'hideNumber' => rand(1, 10),
-            'operator' => rand(1, 2) === 1 ? '+' : '-',
-            'startNum' => rand(1, 100),
-            'iter' => rand(1, 10),
+            'answer' => strval($answer),
+            'viewQuestion' => $viewQuestion,
         ];
     };
-
-    return $getQuestion;
-}
-
-function getQuestionView(): callable
-{
-    $getQuestionView = function (array $question): string {
-        [
-            'hideNumber' => $hideNumber,
-            'operator' => $operator,
-            'startNum' => $startNum,
-            'iter' => $iterNum,
-        ] = $question;
-
-        $iter = function (int $currentCount, array $acc) use (&$iter, $operator, $iterNum): array {
-            if ($currentCount >= 10) {
-                return $acc;
-            }
-            $previousNum = $acc[count($acc) - 1];
-            array_push($acc, calc($operator, $previousNum, $iterNum));
-            return $iter($currentCount + 1, $acc);
-        };
-
-        $result = $iter(0, [$startNum]);
-        $result[$hideNumber] = '..';
-        return implode(' ', $result);
-    };
-
-    return $getQuestionView;
+    run(GAME_RULE, $game);
 }

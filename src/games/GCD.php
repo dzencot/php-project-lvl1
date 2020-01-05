@@ -2,45 +2,49 @@
 
 namespace BrainGames\Games\GCD;
 
-function getRule(): string
-{
-    return 'Find the greatest common divisor of given numbers.';
-}
+use function BrainGames\Cli\run;
 
-function getAnswer(): callable
+const GAME_RULE = 'Find the greatest common divisor of given numbers.';
+
+function getAnswer(array $question): string
 {
-    $getAnswer = function (array $question): string {
-        ['number1' => $number1, 'number2' => $number2] = $question;
-        $iter = function ($a, $b) use (&$iter) {
-            if ($a !== 0 && $b !== 0) {
-                if ($a > $b) {
-                    return $iter($a % $b, $b);
-                }
-                return $iter($b % $a, $a);
+    ['number1' => $number1, 'number2' => $number2] = $question;
+    $iter = function ($a, $b) use (&$iter) {
+        if ($a !== 0 && $b !== 0) {
+            if ($a > $b) {
+                return $iter($a % $b, $b);
             }
-            return $a + $b;
-        };
-        return strval($iter($number1, $number2));
+            return $iter($b % $a, $a);
+        }
+        return $a + $b;
     };
-    return $getAnswer;
+    return strval($iter($number1, $number2));
 }
 
-function getQuestion(): callable
+function getQuestion(): array
 {
-    $getQuestion = function (): array {
+    return [
+        'number1' => rand(1, 100),
+        'number2' => rand(1, 100),
+    ];
+}
+
+function getQuestionView(array $question): string
+{
+    ['number1' => $number1, 'number2' => $number2] = $question;
+    return "${number1} ${number2}";
+}
+
+function game(): void
+{
+    $game = function () {
+        $question = getQuestion();
+        $answer = getAnswer($question);
+        $viewQuestion = getQuestionView($question);
         return [
-            'number1' => rand(1, 100),
-            'number2' => rand(1, 100),
+            'answer' => $answer,
+            'viewQuestion' => $viewQuestion,
         ];
     };
-    return $getQuestion;
-}
-
-function getQuestionView(): callable
-{
-    $getQuestionView = function (array $question): string {
-        ['number1' => $number1, 'number2' => $number2] = $question;
-        return "${number1} ${number2}";
-    };
-    return $getQuestionView;
+    run(GAME_RULE, $game);
 }

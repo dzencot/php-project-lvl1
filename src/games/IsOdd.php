@@ -2,31 +2,35 @@
 
 namespace BrainGames\Games\IsOdd;
 
-function getRule(): string
+use function BrainGames\Cli\run;
+
+const GAME_RULE = 'Answer "yes" if the number is even, otherwise answer "no".';
+
+function isEven(int $question): bool
 {
-    return 'Answer "yes" if the number is even, otherwise answer "no".';
+    return $question % 2 === 0;
 }
 
-function getAnswer(): callable
+function getQuestion(): int
 {
-    $getAnswer = function (int $question): string {
-        return $question % 2 === 0 ? 'yes' : 'no';
-    };
-    return $getAnswer;
+    return rand(1, 100);
 }
 
-function getQuestion(): callable
+function getQuestionView(int $question): string
 {
-    $getQuestion = function (): int {
-        return rand(1, 100);
-    };
-    return $getQuestion;
+    return strval($question);
 }
 
-function getQuestionView(): callable
+function game()
 {
-    $getQuestionView = function (int $question): string {
-        return strval($question);
+    $game = function () {
+        $question = getQuestion();
+        $answer = isEven($question) ? 'yes' : 'no';
+        $viewQuestion = getQuestionView($question);
+        return [
+            'answer' => $answer,
+            'viewQuestion' => $viewQuestion,
+        ];
     };
-    return $getQuestionView;
+    run(GAME_RULE, $game);
 }
