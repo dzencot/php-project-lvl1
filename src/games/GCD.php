@@ -6,9 +6,8 @@ use function BrainGames\Cli\run;
 
 const GAME_RULE = 'Find the greatest common divisor of given numbers.';
 
-function getAnswer(array $question): string
+function getGCD(int $number1, int $number2): int
 {
-    ['number1' => $number1, 'number2' => $number2] = $question;
     $iter = function ($a, $b) use (&$iter) {
         if ($a !== 0 && $b !== 0) {
             if ($a > $b) {
@@ -18,31 +17,18 @@ function getAnswer(array $question): string
         }
         return $a + $b;
     };
-    return strval($iter($number1, $number2));
-}
-
-function getQuestion(): array
-{
-    return [
-        'number1' => rand(1, 100),
-        'number2' => rand(1, 100),
-    ];
-}
-
-function getQuestionView(array $question): string
-{
-    ['number1' => $number1, 'number2' => $number2] = $question;
-    return "${number1} ${number2}";
+    return $iter($number1, $number2);
 }
 
 function game(): void
 {
     $game = function () {
-        $question = getQuestion();
-        $answer = getAnswer($question);
-        $viewQuestion = getQuestionView($question);
+        $number1 = rand(1, 100);
+        $number2 = rand(1, 100);
+        $answer = getGCD($number1, $number2);
+        $viewQuestion = "${number1} ${number2}";
         return [
-            'answer' => $answer,
+            'answer' => strval($answer),
             'viewQuestion' => $viewQuestion,
         ];
     };

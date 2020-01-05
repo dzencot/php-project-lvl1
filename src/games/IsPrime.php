@@ -24,22 +24,12 @@ function isPrime(int $question): bool
     return $isPrime($question, 2);
 }
 
-function getQuestion(): int
-{
-    return rand(1, 100);
-}
-
-function getQuestionView(int $question): string
-{
-    return strval($question);
-}
-
 function game()
 {
     $game = function () {
-        $question = getQuestion();
+        $question = rand(1, 100);
         $answer = isPrime($question) ? 'yes' : 'no';
-        $viewQuestion = getQuestionView($question);
+        $viewQuestion = strval($question);
         return [
             'answer' => $answer,
             'viewQuestion' => $viewQuestion,

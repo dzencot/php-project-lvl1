@@ -7,16 +7,6 @@ use function BrainGames\Cli\run;
 const GAME_RULE = 'What number is missing in the progression?';
 const MAX_LENGTH_NUMBERS = 10;
 
-function getQuestion(): array
-{
-    return [
-        'hideNumber' => rand(1, 10),
-        'operator' => rand(1, 2) === 1 ? '+' : '-',
-        'startNum' => rand(1, 100),
-        'iter' => rand(1, 10),
-    ];
-}
-
 function calc($operator, $number1, $number2)
 {
     switch ($operator) {
@@ -33,14 +23,11 @@ function calc($operator, $number1, $number2)
     };
 }
 
-function getNumbers(array $question): array
+function getNumbers(): array
 {
-    [
-        'hideNumber' => $hideNumber,
-        'operator' => $operator,
-        'startNum' => $startNum,
-        'iter' => $iterNum,
-    ] = $question;
+    $operator = rand(1, 2) === 1 ? '+' : '-';
+    $startNum = rand(1, 100);
+    $iterNum = rand(1, 10);
 
     $iter = function (int $currentCount, array $acc) use (&$iter, $operator, $iterNum): array {
         if ($currentCount >= MAX_LENGTH_NUMBERS) {
@@ -58,9 +45,8 @@ function getNumbers(array $question): array
 function game()
 {
     $game = function () {
-        $question = getQuestion();
-        $hideNumberIndex = $question['hideNumber'];
-        $numbers = getNumbers($question);
+        $numbers = getNumbers();
+        $hideNumberIndex = rand(1, 10);
         $answer = $numbers[$hideNumberIndex];
         $questionNumbers = array_map(function ($item) use ($answer) {
             if ($item === $answer) {
