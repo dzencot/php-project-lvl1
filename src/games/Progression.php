@@ -7,38 +7,17 @@ use function BrainGames\Cli\run;
 const GAME_RULE = 'What number is missing in the progression?';
 const MAX_LENGTH_NUMBERS = 10;
 
-function calc($operator, $number1, $number2)
-{
-    switch ($operator) {
-        case '+':
-            return $number1 + $number2;
-        case '-':
-            return $number1 - $number2;
-        case '*':
-            return $number1 * $number2;
-        case '/':
-            return $number1 / $number2;
-        default:
-            return 'unknown operator';
-    };
-}
-
 function getNumbers(): array
 {
-    $operator = rand(1, 2) === 1 ? '+' : '-';
     $startNum = rand(1, 100);
-    $iterNum = rand(1, 10);
+    $iterNum = rand(-10, 10);
+    $result = [$startNum];
 
-    $iter = function (int $currentCount, array $acc) use (&$iter, $operator, $iterNum): array {
-        if ($currentCount >= MAX_LENGTH_NUMBERS) {
-            return $acc;
-        }
-        $previousNum = $acc[count($acc) - 1];
-        array_push($acc, calc($operator, $previousNum, $iterNum));
-        return $iter($currentCount + 1, $acc);
-    };
+    for ($i = 1; $i < MAX_LENGTH_NUMBERS; $i += 1) {
+        $previousNum = $result[count($result) - 1];
+        array_push($result, $previousNum + $iterNum);
+    }
 
-    $result = $iter(0, [$startNum]);
     return $result;
 }
 
