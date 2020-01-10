@@ -25,7 +25,7 @@ function calc($operator, $number1, $number2)
 
 function game(): void
 {
-    $game = function () {
+    $getQuestionAndAnswer = function () {
         $operator = OPERATORS[rand(0, 3)];
         $number1 = rand(1, 100);
         $number2 = rand(1, 100);
@@ -36,5 +36,5 @@ function game(): void
             'question' => $question,
         ];
     };
-    run(GAME_RULE, $game);
+    run(GAME_RULE, $getQuestionAndAnswer);
 }

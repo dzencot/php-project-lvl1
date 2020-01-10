@@ -23,7 +23,7 @@ function getNumbers(): array
 
 function game()
 {
-    $game = function () {
+    $getQuestionAndAnswer = function () {
         $numbers = getNumbers();
         $hideNumberIndex = rand(1, 10);
         $answer = $numbers[$hideNumberIndex];
@@ -39,5 +39,5 @@ function game()
             'question' => $question,
         ];
     };
-    run(GAME_RULE, $game);
+    run(GAME_RULE, $getQuestionAndAnswer);
 }

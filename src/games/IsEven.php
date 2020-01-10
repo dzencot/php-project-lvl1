@@ -8,7 +8,7 @@ const GAME_RULE = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 function game()
 {
-    $game = function () {
+    $getQuestionAndAnswer = function () {
         $question = rand(1, 100);
         $answer = $question % 2 === 0 ? 'yes' : 'no';
         $question = strval($question);
@@ -17,5 +17,5 @@ function game()
             'question' => $question,
         ];
     };
-    run(GAME_RULE, $game);
+    run(GAME_RULE, $getQuestionAndAnswer);
 }

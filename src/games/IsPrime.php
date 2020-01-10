@@ -26,7 +26,7 @@ function isPrime(int $question): bool
 
 function game()
 {
-    $game = function () {
+    $getQuestionAndAnswer = function () {
         $question = rand(1, 100);
         $answer = isPrime($question) ? 'yes' : 'no';
         $question = strval($question);
@@ -35,5 +35,5 @@ function game()
             'question' => $question,
         ];
     };
-    run(GAME_RULE, $game);
+    run(GAME_RULE, $getQuestionAndAnswer);
 }

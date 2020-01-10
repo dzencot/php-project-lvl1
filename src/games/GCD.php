@@ -22,7 +22,7 @@ function getGCD(int $number1, int $number2): int
 
 function game(): void
 {
-    $game = function () {
+    $getQuestionAndAnswer = function () {
         $number1 = rand(1, 100);
         $number2 = rand(1, 100);
         $answer = getGCD($number1, $number2);
@@ -32,5 +32,5 @@ function game(): void
             'question' => $question,
         ];
     };
-    run(GAME_RULE, $game);
+    run(GAME_RULE, $getQuestionAndAnswer);
 }
