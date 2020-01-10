@@ -8,16 +8,10 @@ const GAME_RULE = 'Find the greatest common divisor of given numbers.';
 
 function getGCD(int $number1, int $number2): int
 {
-    $iter = function ($a, $b) use (&$iter) {
-        if ($a !== 0 && $b !== 0) {
-            if ($a > $b) {
-                return $iter($a % $b, $b);
-            }
-            return $iter($b % $a, $a);
-        }
-        return $a + $b;
-    };
-    return $iter($number1, $number2);
+    if ($number2 > 0) {
+        return getGCD($number2, $number1 % $number2);
+    }
+    return abs($number1);
 }
 
 function game(): void

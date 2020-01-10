@@ -14,9 +14,9 @@ function run(string $ruleGame, callable $game): void
     $maxCorrectAnswers = 3;
     $fail = false;
     for ($i = 1; $i <= $maxCorrectAnswers; $i += 1) {
-        ['answer' => $correctAnswer, 'viewQuestion' => $viewQuestion] = $game();
+        ['answer' => $correctAnswer, 'question' => $question] = $game();
 
-        line('Question: %s', $viewQuestion);
+        line('Question: %s', $question);
         $answer = prompt('Your answer');
 
         if ($answer !== $correctAnswer) {
