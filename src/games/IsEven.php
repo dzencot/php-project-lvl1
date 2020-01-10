@@ -6,15 +6,19 @@ use function BrainGames\Cli\run;
 
 const GAME_RULE = 'Answer "yes" if the number is even, otherwise answer "no".';
 
+function isEven(int $number): bool
+{
+    return $number % 2 === 0;
+}
+
 function game()
 {
     $getQuestionAndAnswer = function () {
         $question = rand(1, 100);
-        $answer = $question % 2 === 0 ? 'yes' : 'no';
-        $question = strval($question);
+        $answer = isEven($question) ? 'yes' : 'no';
         return [
             'answer' => $answer,
-            'question' => $question,
+            'question' => strval($question),
         ];
     };
     run(GAME_RULE, $getQuestionAndAnswer);
