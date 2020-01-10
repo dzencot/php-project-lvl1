@@ -5,18 +5,7 @@ namespace BrainGames\Games\Calc;
 use function BrainGames\Cli\run;
 
 const GAME_RULE = 'What is the result of the expression?';
-
-function getOperator(): string
-{
-    switch (rand(1, 3)) {
-        case 1:
-            return '+';
-        case 2:
-            return '-';
-        default:
-            return '*';
-    };
-}
+const OPERATORS = ['+', '-', '*', '/'];
 
 function calc($operator, $number1, $number2)
 {
@@ -30,14 +19,14 @@ function calc($operator, $number1, $number2)
         case '/':
             return $number1 / $number2;
         default:
-            return 'unknown operator';
+            return null;
     };
 }
 
 function game(): void
 {
     $game = function () {
-        $operator = getOperator();
+        $operator = OPERATORS[rand(0, 3)];
         $number1 = rand(1, 100);
         $number2 = rand(1, 100);
         $answer = calc($operator, $number1, $number2);
