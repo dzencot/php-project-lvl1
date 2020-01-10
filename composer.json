@@ -1,28 +1,28 @@
 {
     "name": "dzencot/brain-games",
     "bin": [
-      "bin/brain-even",
-      "bin/brain-calc",
-      "bin/brain-gcd",
-      "bin/brain-progression",
-      "bin/brain-prime"
+        "bin/brain-even",
+        "bin/brain-calc",
+        "bin/brain-gcd",
+        "bin/brain-progression",
+        "bin/brain-prime"
     ],
     "type": "project",
     "keywords": ["hexlet", "brain-games"],
     "description": "Brain Games is bundle of mini-games with command-line interface",
     "license": "MIT",
     "scripts": {
-      "phpcs": "phpcs"
+        "phpcs": "phpcs"
     },
     "autoload": {
-      "files": [
-        "src/Cli.php",
-        "src/games/IsEven.php",
-        "src/games/Calc.php",
-        "src/games/GCD.php",
-        "src/games/Progression.php",
-        "src/games/IsPrime.php"
-      ]
+        "files": [
+            "src/Cli.php",
+            "src/games/IsEven.php",
+            "src/games/Calc.php",
+            "src/games/GCD.php",
+            "src/games/Progression.php",
+            "src/games/IsPrime.php"
+        ]
     },
     "authors": [
         {
