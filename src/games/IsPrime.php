@@ -29,10 +29,10 @@ function game()
     $game = function () {
         $question = rand(1, 100);
         $answer = isPrime($question) ? 'yes' : 'no';
-        $viewQuestion = strval($question);
+        $question = strval($question);
         return [
             'answer' => $answer,
-            'viewQuestion' => $viewQuestion,
+            'question' => $question,
         ];
     };
     run(GAME_RULE, $game);

@@ -26,10 +26,10 @@ function game(): void
         $number1 = rand(1, 100);
         $number2 = rand(1, 100);
         $answer = getGCD($number1, $number2);
-        $viewQuestion = "${number1} ${number2}";
+        $question = "${number1} ${number2}";
         return [
             'answer' => strval($answer),
-            'viewQuestion' => $viewQuestion,
+            'question' => $question,
         ];
     };
     run(GAME_RULE, $game);

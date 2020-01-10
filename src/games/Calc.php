@@ -30,10 +30,10 @@ function game(): void
         $number1 = rand(1, 100);
         $number2 = rand(1, 100);
         $answer = calc($operator, $number1, $number2);
-        $viewQuestion = "${number1} ${operator} ${number2}";
+        $question = "${number1} ${operator} ${number2}";
         return [
             'answer' => strval($answer),
-            'viewQuestion' => $viewQuestion,
+            'question' => $question,
         ];
     };
     run(GAME_RULE, $game);

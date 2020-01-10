@@ -11,10 +11,10 @@ function game()
     $game = function () {
         $question = rand(1, 100);
         $answer = $question % 2 === 0 ? 'yes' : 'no';
-        $viewQuestion = strval($question);
+        $question = strval($question);
         return [
             'answer' => $answer,
-            'viewQuestion' => $viewQuestion,
+            'question' => $question,
         ];
     };
     run(GAME_RULE, $game);

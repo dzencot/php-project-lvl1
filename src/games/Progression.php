@@ -33,10 +33,10 @@ function game()
             }
             return $item;
         }, $numbers);
-        $viewQuestion = implode(' ', $questionNumbers);
+        $question = implode(' ', $questionNumbers);
         return [
             'answer' => strval($answer),
-            'viewQuestion' => $viewQuestion,
+            'question' => $question,
         ];
     };
     run(GAME_RULE, $game);
