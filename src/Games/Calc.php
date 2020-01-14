@@ -2,10 +2,10 @@
 
 namespace BrainGames\Games\Calc;
 
-use function BrainGames\Cli\run;
+use function BrainGames\Engine\run;
 
 const GAME_DESCRIPTION = 'What is the result of the expression?';
-const OPERATORS = ['+', '-', '*', '/'];
+const OPERATORS = ['+', '-'];
 
 function calc($operator, $number1, $number2)
 {
@@ -23,10 +23,10 @@ function calc($operator, $number1, $number2)
     };
 }
 
-function game(): void
+function runGame(): void
 {
     $getQuestionAndAnswer = function () {
-        $operator = OPERATORS[rand(0, 3)];
+        $operator = OPERATORS[rand(0, count(OPERATORS))];
         $number1 = rand(1, 100);
         $number2 = rand(1, 100);
         $answer = calc($operator, $number1, $number2);
