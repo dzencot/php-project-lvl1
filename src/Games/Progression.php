@@ -11,7 +11,7 @@ function getProgression(int $startNum, int $iterNum): array
 {
     $result = [];
 
-    for ($i = 1; $i <= LENGTH_PROGRESSION; $i += 1) {
+    for ($i = 0; $i < LENGTH_PROGRESSION; $i += 1) {
         $result[] = $startNum + $iterNum * $i;
     }
 
@@ -24,7 +24,7 @@ function runGame()
         $startNum = rand(1, 100);
         $iterNum = rand(-10, 10);
         $progression = getProgression($startNum, $iterNum);
-        $hiddenNumberIndex = rand(1, LENGTH_PROGRESSION);
+        $hiddenNumberIndex = rand(0, LENGTH_PROGRESSION - 1);
         $answer = $progression[$hiddenNumberIndex];
         $getQuestion = function () use ($progression, $hiddenNumberIndex) {
             $progression[$hiddenNumberIndex] = '..';
