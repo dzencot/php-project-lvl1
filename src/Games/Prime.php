@@ -8,6 +8,9 @@ const GAME_DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answe
 
 function isPrime(int $number): bool
 {
+    if ($number <= 1) {
+        return false;
+    }
     for ($x = 2; $x <= sqrt($number); $x++) {
         if ($number % $x === 0) {
             return false;
